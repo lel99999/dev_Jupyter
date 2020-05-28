@@ -11,16 +11,16 @@ Vagrant.configure("2") do |config|
 #   trigger.run = { path:"subscription-manager register --username <username> --password <password> --auto-attach"}
 # end
 
-  config.vm.define "jupyter" do |jupyter|
-#   jupyter.vm.box = "generic/rhel7"
-    jupyter.vm.box = "RH7.5_baserepo"
-    #jupyter.vm.box = "javier-lopez/rhel-7.4"
-    #jupyter.vm.box = "xianlin/rhel-7.4"
-    jupyter.vm.hostname = "daskRH7"
-    jupyter.vm.network "private_network", ip: "192.168.60.141"
-    jupyter.vm.provision "shell", :inline => "sudo echo '192.168.60.141 jupyter.local jupyter' >> /etc/hosts"
-    jupyter.vm.provision "ansible" do |ansible|
-      ansible.playbook = "deploy_jupyter.yml"
+  config.vm.define "jupyterRH7" do |jupyterRH7|
+#   jupyterRH7.vm.box = "generic/rhel7"
+    jupyterRH7.vm.box = "RH7.5_baserepo"
+    #jupyterRH7.vm.box = "javier-lopez/rhel-7.4"
+    #jupyterRH7.vm.box = "xianlin/rhel-7.4"
+    jupyterRH7.vm.hostname = "daskRH7"
+    jupyterRH7.vm.network "private_network", ip: "192.168.60.141"
+    jupyterRH7.vm.provision "shell", :inline => "sudo echo '192.168.60.141 jupyterRH7.local jupyterRH7' >> /etc/hosts"
+    jupyterRH7.vm.provision "ansible" do |ansible|
+      ansible.playbook = "deploy_jupyterRH7.yml"
       ansible.inventory_path = "vagrant_hosts"
       #ansible.tags = ansible_tags
       #ansible.verbose = ansible_verbosity
