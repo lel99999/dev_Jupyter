@@ -1,5 +1,5 @@
-# dev_Jupyter
-Jupyter Integration
+# dev_JupyterRH7
+Jupyter Integration for RHEL 7.x
 
 #### Create and Activate virtual environment
 `$python3 -m venv /<path-to-environment/`<br/>
