@@ -23,4 +23,8 @@ Jupyter Integration for RHEL 7.x
 `(project) $python3 -m pip install jupyter`<br/>
 
 #### Test Jupyter Installation
-`(project) $which python3
+`(project) $which python3`<br/>
+`(project) $which ipython3`<br/>
+`(project) $which jupyter-notebook`<br/>
+
+
