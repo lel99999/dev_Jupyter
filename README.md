@@ -5,7 +5,9 @@ Jupyter Integration for RHEL 7.x
 `$pip3 install virtualenv`<br/>
 
 #### Setup and Activate virtual environment
-`virtualenv --system-site-packages -p python3 ~/<project>
+`virtualenv --system-site-packages -p python3 ~/<project>`<br/>
+or<br/>
+
 `$python3 -m venv /<path-to-projectt/`<br/>
 
 `$source ~/<project>/bin/activate`<br/>
@@ -27,4 +29,9 @@ Jupyter Integration for RHEL 7.x
 `(project) $which ipython3`<br/>
 `(project) $which jupyter-notebook`<br/>
 
-
+#### Save or Freeze the requirements
+`$pip list`  Will list all packages <br/>
+`$pip freeze > requirements.txt`<br/>
+This will create a list containing all the packages in current environment, and their versions.<br/>
+To recreate the same environment and install same packages:<br/>
+`$pip3 install -r requirements.txt`<br/>
