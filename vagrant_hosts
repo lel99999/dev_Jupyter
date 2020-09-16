@@ -1,3 +1,3 @@
 [linuxhosts]
-jupyter ansible_host=192.168.60.143 
+jupyterRH7 ansible_host=192.168.60.141 
 

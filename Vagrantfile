@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
     jupyterRH7.vm.box = "RH7.5_baserepo"
     #jupyterRH7.vm.box = "javier-lopez/rhel-7.4"
     #jupyterRH7.vm.box = "xianlin/rhel-7.4"
-    jupyterRH7.vm.hostname = "daskRH7"
+    jupyterRH7.vm.hostname = "jupyterRH7"
     jupyterRH7.vm.network "private_network", ip: "192.168.60.141"
     jupyterRH7.vm.provision "shell", :inline => "sudo echo '192.168.60.141 jupyterRH7.local jupyterRH7' >> /etc/hosts"
     jupyterRH7.vm.provision "ansible" do |ansible|
