@@ -4,8 +4,8 @@
   vars:
     custom_repo: true
     deploy_iptables: true
-    envir: PROD
-#    envir: DEV.local
+#   envir: PROD
+    envir: DEV.local
     java_link: https://drive.google.com/open?id=1bSq7I3MY3SvY4MHfowEyNq3l-sFMJa8B
     flink_archive: https://www.apache.org/dyn/closer.lua/flink/flink-1.7.1/flink-1.7.1-bin-hadoop28-scala_2.11.tgz
     java_archive: jdk-8u201-linux-x64.tar.gz
