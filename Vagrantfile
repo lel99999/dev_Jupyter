@@ -20,7 +20,8 @@ Vagrant.configure("2") do |config|
     jupyterRH7.vm.network "private_network", ip: "192.168.60.141"
     jupyterRH7.vm.provision "shell", :inline => "sudo echo '192.168.60.141 jupyterRH7.local jupyterRH7' >> /etc/hosts"
     jupyterRH7.vm.provision "ansible" do |ansible|
-      ansible.playbook = "deploy_jupyterRH7.yml"
+      ansible.playbook = "deploy_jupyterRH7_DEV.local.yml"
+#     ansible.playbook = "deploy_jupyterRH7.yml"
       ansible.inventory_path = "vagrant_hosts"
       #ansible.tags = ansible_tags
       #ansible.verbose = ansible_verbosity

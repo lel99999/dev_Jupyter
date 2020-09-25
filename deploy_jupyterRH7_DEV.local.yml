@@ -52,6 +52,22 @@
         state: latest
     - name: install dask
       shell: pip install "dask[complete]"
+
+  roles:
+#   - gaussRH7
+#   - stattransfer14
+#   - chromeRH7
+#   - emacsRH7
+#   - epel7
+#   - python2RH7
+#   - python3RH7
+#   - devtools7
+#   - odbc7
+#   - postgresql-client7
+#   - r_RH7
+#   - sasRH7
+#   - stattransfer14
+
 # post_tasks:
 #   - name: Install texlive
 #     yum:
