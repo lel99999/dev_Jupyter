@@ -54,15 +54,15 @@
       shell: pip install "dask[complete]"
 
   roles:
-    - jupyterRH7
-#   - gaussRH7
-#   - stattransfer14
-#   - chromeRH7
-#   - emacsRH7
-#   - epel7
     - python2RH7
     - python3RH7
     - devtools7
+    - jupyterRH7
+#   - gaussRH7
+#   - stattransfer14
+    - chromeRH7
+#   - emacsRH7
+    - epel7
 #   - odbc7
 #   - postgresql-client7
 #   - r_RH7
