@@ -20,6 +20,14 @@
     state: present
     disable_gpg_check: yes
 
+- name: Anaconda Install Python 3.7
+  shell: conda install python==3.7
+
+- name: Anaconda Update Packages
+  shell: conda update --all
+
+- name: Anaconda Older Package Cleanup
+  shell: conda clean -p
 
 #- name: Get EPEL repo
 #  get_url:
