@@ -35,3 +35,7 @@ or<br/>
 This will create a list containing all the packages in current environment, and their versions.<br/>
 To recreate the same environment and install same packages:<br/>
 `$pip3 install -r requirements.txt`<br/>
+
+
+#### After Jupyter Install Launch Jupyter Notebook:
+`$jupyter notebook`<br/>
