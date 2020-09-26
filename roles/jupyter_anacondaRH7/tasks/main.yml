@@ -9,13 +9,16 @@
   tags:
     - jupyterRH7
 
-- name: Install Jupyter Notebook
+- name: Download Anaconda
+  get_url:
+    url: https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh
+    dest: /opt/Anaconda3-2020.07-Linux-x86_64.sh
+
+- name: Install Jupyter Notebook via Anaconda
   yum:
-    name: "{{ item }}"
+    name: /opt/Anaconda3-2020.07-Linux-x86_64.sh
     state: present
     disable_gpg_check: yes
-  with_items:
-    - bzip2
 
 
 #- name: Get EPEL repo

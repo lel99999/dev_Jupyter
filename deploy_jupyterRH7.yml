@@ -54,6 +54,7 @@
       shell: pip install "dask[complete]"
 
   roles:
+    - jupyterRH7
 #   - gaussRH7
 #   - stattransfer14
 #   - chromeRH7
