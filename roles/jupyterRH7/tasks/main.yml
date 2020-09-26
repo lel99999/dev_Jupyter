@@ -9,13 +9,21 @@
   tags:
     - jupyterRH7
 
-- name: Install Jupyter Notebook
+- name: Install Jupyter Notebook Dependencies
   yum:
     name: "{{ item }}"
     state: present
     disable_gpg_check: yes
   with_items:
     - bzip2
+    - python3-pip
+
+- name: Instally Jupyter Notebook via Pip
+  shell: pip3 install jupyterlab
+
+#################### If Error: OSError: [Error 99] Cannot assign requested address ############################
+# Add Server IP Address to ~/.jupyter/jupyter_notebook_config.py
+# c.NotebookApp.ip = '<IP Address>'
 
 
 #- name: Get EPEL repo
