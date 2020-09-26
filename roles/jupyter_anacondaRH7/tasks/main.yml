@@ -29,6 +29,9 @@
 - name: Anaconda Older Package Cleanup
   shell: conda clean -p
 
+- name: Install Jupyter Notebook
+  shell: conda install -c conda-forge notebook
+
 #- name: Get EPEL repo
 #  get_url:
 #    url: "{{ epel_path }}/{{ epel_rpm }}"
