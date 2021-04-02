@@ -18,8 +18,11 @@
     - bzip2
     - python3-pip
 
-- name: Instally Jupyter Notebook via Pip
+- name: Instally Jupyterlab via Pip
   shell: pip3 install jupyterlab
+
+- name: Instally Jupyter Notebook via Pip
+  shell: pip3 install notebook
 
 #################### If Error: OSError: [Error 99] Cannot assign requested address ############################
 # Add Server IP Address to ~/.jupyter/jupyter_notebook_config.py
