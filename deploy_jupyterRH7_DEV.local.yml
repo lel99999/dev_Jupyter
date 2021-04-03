@@ -58,7 +58,8 @@
     - python2RH7
     - python3RH7
     - devtools7
-    - jupyter_anacondaRH7
+#   - jupyter_anacondaRH7
+    - jupyterRH7
 #   - gaussRH7
 #   - stattransfer14
     - chromeRH7
