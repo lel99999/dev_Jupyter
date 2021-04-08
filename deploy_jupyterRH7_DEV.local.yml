@@ -56,6 +56,7 @@
 
   roles:
     - epel7
+    - python27RH7-System
     - python2RH7
     - python3RH7
     - devtools7
