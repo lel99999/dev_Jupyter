@@ -19,10 +19,13 @@ or<br/>
 #### Install IPython
 `(project) $pip3 install ipython`<br/>
 
-#### Install Jupyter Notebook
-`(project) $pip3 install jupiter`<br/>
+#### Install Jupyterlab
+`(project) $pip3 install jupyterlab`<br/>
 
-`(project) $python3 -m pip install jupyter`<br/>
+#### Install Jupyter Notebook
+`(project) $pip3 install notebook`<br/>
+
+`(project) $python3 -m pip install notebook`<br/>
 
 #### Test Jupyter Installation
 `(project) $which python3`<br/>
@@ -39,3 +42,6 @@ To recreate the same environment and install same packages:<br/>
 
 #### After Jupyter Install Launch Jupyter Notebook:
 `$jupyter notebook`<br/>
+
+#### Setup Jupyter Notebook Proxy
+
