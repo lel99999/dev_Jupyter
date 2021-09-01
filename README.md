@@ -45,3 +45,6 @@ To recreate the same environment and install same packages:<br/>
 
 #### Setup Jupyter Notebook Proxy
 
+#### IJavascript - Javascript Kernel for Jupyter Notebook
+[https://github.com/n-riesco/ijavascript](https://github.com/n-riesco/ijavascript) <br/>
+
