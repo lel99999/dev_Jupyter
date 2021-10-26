@@ -1,5 +1,21 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
+ # -*- mode: ruby -*-
+ # vi: set ft=ruby :
+require 'getoptlong'
+
+opts = GetoptLong.new(
+  [ '--custom-option', GetoptLong::OPTIONAL_ARGUMENT ]
+)
+
+customParameter=''
+
+opts.ordering=(GetoptLong::REQUIRE_ORDER)   ### this line.
+
+opts.each do |opt, arg|
+  case opt
+    when '--custom-option'
+      customParameter=arg
+  end
+end
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"

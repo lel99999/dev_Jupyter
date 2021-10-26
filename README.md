@@ -48,3 +48,15 @@ To recreate the same environment and install same packages:<br/>
 #### IJavascript - Javascript Kernel for Jupyter Notebook
 [https://github.com/n-riesco/ijavascript](https://github.com/n-riesco/ijavascript) <br/>
 
+#### Connect in Windows with Putty
+- Jupyter runs on port 8888
+- Open putty
+  - in Connection -> SSH -> Tunnels :: Add new forwarded port
+  - set Source port: 8888
+  - set Destination: localhost:8888
+  - click Add button
+  - click Open button
+  - Login, then go to your home folder/notebooks folder and launch Jupyter
+```
+$jupyter notebook --no-browser
+```
