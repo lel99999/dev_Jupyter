@@ -17,12 +17,22 @@
   with_items:
     - bzip2
     - python3-pip
+  tags:
+    - jupyterRH7
+
 
 - name: Instally Jupyterlab via Pip
   shell: pip3 install jupyterlab
+# launch jupyterlab with: $jupyter-lab
+  tags:
+    - jupyterRH7
 
 - name: Instally Jupyter Notebook via Pip
   shell: pip3 install notebook
+# launch notebook server with: $jupyter notebook  
+  tags:
+    - jupyterRH7
+
 
 #################### If Error: OSError: [Error 99] Cannot assign requested address ############################
 # Add Server IP Address to ~/.jupyter/jupyter_notebook_config.py
