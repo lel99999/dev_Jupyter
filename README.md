@@ -50,11 +50,15 @@ To recreate the same environment and install same packages:<br/>
 
 #### Connect in Windows with Putty
 - Jupyter runs on port 8888
-- Open putty
+- Open putty <br/>
+  ![Open Putty](https://github.com/lel99999/dev_JupyterRH7/blob/master/putty-01.PNG) <br/>
+
   - in Connection -> SSH -> Tunnels :: Add new forwarded port
   - set Source port: 8888
   - set Destination: localhost:8888
-  - click Add button
+  - click Add button <br/>
+  ![https://github.com/lel99999/dev_JupyterRH7/blob/master/putty-03.PNG](https://github.com/lel99999/dev_JupyterRH7/blob/master/putty-03.PNG) <br/>
+  
   - click Open button
   - Login, then go to your home folder/notebooks folder and launch Jupyter
 ```
