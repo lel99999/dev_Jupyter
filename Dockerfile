@@ -8,8 +8,9 @@ ENV HOME /root
 # Don't forget to run '/usr/sbin/sshd -D' if you actually want to ssh into this container
 RUN yum install -y openssh-server
 RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N ''
-RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key -N ''
-ADD src/sshd/sshd_config /etc/ssh/sshd_config 
+#RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key -N ''
+RUN ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_dsa_key -N ''
+ADD files/sshd/sshd_config /etc/ssh/sshd_config 
 RUN echo root:welcome1 | chpasswd
 
 # Regenerate SSH host keys. baseimage-docker does not contain any, so you
