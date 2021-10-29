@@ -6,12 +6,18 @@ ENV HOME /root
 # enable ssh
 # ssh server
 # Don't forget to run '/usr/sbin/sshd -D' if you actually want to ssh into this container
-RUN yum install -y openssh-server
+RUN yum install -y openssh-server openssh-clients
 RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N ''
 #RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key -N ''
 RUN ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_dsa_key -N ''
-ADD files/sshd/sshd_config /etc/ssh/sshd_config 
+#ADD files/sshd/sshd_config /etc/ssh/sshd_config 
 RUN echo root:welcome1 | chpasswd
+
+RUN mkdir /var/run/sshd
+RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+EXPOSE 22 8080
+CMD ["/usr/sbin/sshd", "-D"]
 
 # Regenerate SSH host keys. baseimage-docker does not contain any, so you
 # have to do that yourself. You may also comment out this instruction; the
@@ -33,8 +39,8 @@ RUN echo root:welcome1 | chpasswd
 
 EXPOSE 22
 
-RUN mkdir -p /var/run/sshd
-RUN chmod 0755 /var/run/sshd
+#RUN mkdir -p /var/run/sshd
+#RUN chmod 0755 /var/run/sshd
 
 # Create and configure vagrant user
 RUN useradd --create-home -s /bin/bash vagrant
