@@ -18,19 +18,35 @@ opts.each do |opt, arg|
 end
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
-VAGRANTFILE_API_VERSION = "2"
+#VAGRANTFILE_API_VERSION = "2"
 #Check if you have the good Vagrant version to use docker provider...
 #Vagrant.require_version ">= 1.6.0"
 
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'docker'
+#Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+Vagrant.configure("2") do |config|
+  config.ssh.username   = 'vagrant'
+  config.ssh.password   = 'vagrant'
 
-  ENV['VAGRANT_DEFAULT_PROVIDER'] = 'docker'
+# config.hostmanager.enabled           = true
+# config.hostmanager.manage_guest      = true
 
   config.vm.provider "docker" do |d|
     d.build_dir = "."
     d.has_ssh = true
+    d.remains_running = true
   end
-  config.ssh.port = 22
+# config.ssh.port = 22
+# config.vm.hostname = "ansible"
+  config.vm.network "private_network", ip: "192.168.60.158"
+# config.vm.provision "shell", :inline => "sudo echo '192.168.60.158 RRH7.local RRH7' >> /etc/hosts"
+
+# config.vm.network "forwarded_port", guest: 8080, host: 7000, host_ip: "127.0.0.1", auto_correct: true
+# config.vm.provision :hostmanager
+  config.vm.provision :ansible do |ansible|
+    ansible.playbook      = "deploy_jupyterRH7.yml"
+  end
+
 
 end
 

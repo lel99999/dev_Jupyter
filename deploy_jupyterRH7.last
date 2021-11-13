@@ -4,10 +4,10 @@
   vars:
     custom_repo: true
     deploy_iptables: true
-#   envir: PROD
-    envir: DEV.local
+    envir: PROD
+#    envir: DEV.local
     java_link: https://drive.google.com/open?id=1bSq7I3MY3SvY4MHfowEyNq3l-sFMJa8B
-#   flink_archive: https://www.apache.org/dyn/closer.lua/flink/flink-1.7.1/flink-1.7.1-bin-hadoop28-scala_2.11.tgz
+    flink_archive: https://www.apache.org/dyn/closer.lua/flink/flink-1.7.1/flink-1.7.1-bin-hadoop28-scala_2.11.tgz
     java_archive: jdk-8u201-linux-x64.tar.gz
     download_url: https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz
     path_base: /usr/local/java
@@ -17,25 +17,25 @@
   become: yes
   become_method: sudo
 
-# pre_tasks:
-#   - debug:
-#       msg: "Variables: _uid = {{ _uid }}, _pwd = **********"
-#       msg: "Variables: _uid = {{ _uid }}, _pwd = {{ _pwd }}"
-#   - name: register RHEL7.5
-#     command: "/usr/bin/subscription-manager register --username {{ _uid }} --password {{ _pwd }} --auto-attach --force"
-#     when: _uid != "" and _pwd != ""
+  pre_tasks:
+    - debug:
+        msg: "Variables: _uid = {{ _uid }}, _pwd = **********"
+        msg: "Variables: _uid = {{ _uid }}, _pwd = {{ _pwd }}"
+    - name: register RHEL7.5
+      command: "/usr/bin/subscription-manager register --username {{ _uid }} --password {{ _pwd }} --auto-attach --force"
+      when: _uid != "" and _pwd != ""
 #     command: "/usr/bin/subscription-manager register --username <name> --password <password> --auto-attach"
-#   - name: register RHEL7 repos necessary for Chrome (optional, extras)
-#     command: "/usr/bin/subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-7-server-extras-rpms --enable=rhel-7-server-optional-rpms"
-#   - name: register RHEL7 RHSCL Repo
-#     shell: "/usr/bin/subscription-manager repos --enable=rhel-server-rhscl-7-rpms"
-#   - name: register RHEL7 DevTools
-#     shell: "/usr/bin/subscription-manager repos --enable=rhel-7-server-devtools-rpms"
-#   - name: list RHEL enabled repos
-#     shell: "/usr/bin/subscription-manager repos --list-enabled"
-#     register: enabled_repos
-#   - debug:
-#       msg: "RHEL Enabled Repos: {{ enabled_repos }}"
+    - name: register RHEL7 repos necessary for Chrome (optional, extras)
+      command: "/usr/bin/subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-7-server-extras-rpms --enable=rhel-7-server-optional-rpms"
+    - name: register RHEL7 RHSCL Repo
+      shell: "/usr/bin/subscription-manager repos --enable=rhel-server-rhscl-7-rpms"
+    - name: register RHEL7 DevTools
+      shell: "/usr/bin/subscription-manager repos --enable=rhel-7-server-devtools-rpms"
+    - name: list RHEL enabled repos
+      shell: "/usr/bin/subscription-manager repos --list-enabled"
+      register: enabled_repos
+    - debug:
+        msg: "RHEL Enabled Repos: {{ enabled_repos }}"
 
   tasks:
     - name: install libselinux-python
@@ -50,8 +50,8 @@
       yum:
         name: python-pip
         state: latest
-#   - name: install dask
-#     shell: pip install "dask[complete]"
+    - name: install dask
+      shell: pip install "dask[complete]"
 
   roles:
     - python2RH7

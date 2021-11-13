@@ -16,7 +16,7 @@ USER root
 RUN yum install -y https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.rpm
 
 # yum whatprovides route
-RUN yum install -y net-tools
+RUN yum install -y net-tools git ansible
 
 
 #RUN useradd --create-home -s /bin/bash vagrant
