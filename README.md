@@ -64,3 +64,5 @@ To recreate the same environment and install same packages:<br/>
 ```
 $jupyter notebook --no-browser
 ```
+
+#### Explore Dynamic Kernels for Jupyter
