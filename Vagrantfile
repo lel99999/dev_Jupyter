@@ -1,94 +1,49 @@
- # -*- mode: ruby -*-
- # vi: set ft=ruby :
-require 'getoptlong'
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
 
-opts = GetoptLong.new(
-  [ '--custom-option', GetoptLong::OPTIONAL_ARGUMENT ]
-)
-
-customParameter=''
-
-opts.ordering=(GetoptLong::REQUIRE_ORDER)   ### this line.
-
-opts.each do |opt, arg|
-  case opt
-    when '--custom-option'
-      customParameter=arg
-  end
-end
-
-# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
-#VAGRANTFILE_API_VERSION = "2"
-#Check if you have the good Vagrant version to use docker provider...
-#Vagrant.require_version ">= 1.6.0"
-
+# Specify Vagrant version and Vagrant API version
+Vagrant.require_version ">= 1.6.0"
+VAGRANTFILE_API_VERSION = "2"
 ENV['VAGRANT_DEFAULT_PROVIDER'] = 'docker'
-#Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-Vagrant.configure("2") do |config|
-  config.ssh.username   = 'vagrant'
-  config.ssh.password   = 'vagrant'
 
-# config.hostmanager.enabled           = true
-# config.hostmanager.manage_guest      = true
+# Require 'yaml' module
+require 'yaml'
 
-  config.vm.provider "docker" do |d|
-    d.build_dir = "."
-    d.has_ssh = true
-    d.remains_running = true
-  end
-# config.ssh.port = 22
-# config.vm.hostname = "ansible"
-  config.vm.network "private_network", ip: "192.168.60.158"
-# config.vm.provision "shell", :inline => "sudo echo '192.168.60.158 RRH7.local RRH7' >> /etc/hosts"
+# Read details of containers to be created from YAML file
+# Be sure to edit 'containers.yml' to provide container details
+containers = YAML.load_file('containers.yml')
 
-# config.vm.network "forwarded_port", guest: 8080, host: 7000, host_ip: "127.0.0.1", auto_correct: true
-# config.vm.provision :hostmanager
-  config.vm.provision :ansible do |ansible|
-    ansible.playbook      = "deploy_jupyterRH7.yml"
+# Create and configure the Docker container(s)
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  # Perform one-time configuration of Docker provider to specify
+  # location of Vagrantfile for host VM; comment out this section
+  # to use default boot2docker box
+  config.vm.provider "docker" do |docker|
+    docker.vagrant_vagrantfile = "DockerHostVagrantfile"
   end
 
+  # Iterate through the entries in the YAML file
+  containers.each do |container|
+    config.vm.define container["name"] do |cntnr|
 
+      # Disable synced folders for the Docker container
+      # (prevents an NFS error on "vagrant up")
+      cntnr.vm.synced_folder ".", "/vagrant", disabled: true
+
+      # Configure the Docker provider for Vagrant
+      cntnr.vm.provider "docker" do |docker|
+
+        # Specify the Docker image to use, pull value from YAML file
+        docker.image = container["image"]
+
+        # Specify port mappings, pull value from YAML file
+        # If omitted, no ports are mapped!
+        docker.ports = container["ports"]
+
+        # Specify a friendly name for the Docker container, pull from YAML file
+        docker.name = container["name"]
+      end
+    end
+  end
 end
-
-
-#Vagrant.configure("2") do |config|
-#  config.vm.provider "virtualbox" do |v|
-#    v.memory = "1024"
-#    v.cpus = 2
-#    v.customize ["modifyvm", :id, "--cpuexecutioncap", "70"]
-#  end
-## config.trigger.after :up do |trigger|
-##   run "subscription-manager register --username <username> --password <password> --auto-attach
-##   trigger.name = "After-Up Trigger ..."
-##   trigger.info = "Trigger Execution ..."
-##   trigger.run = { path:"subscription-manager register --username <username> --password <password> --auto-attach"}
-## end
-#
-#  config.vm.define "jupyterRH7" do |jupyterRH7|
-##   jupyterRH7.vm.box = "generic/rhel7"
-#    jupyterRH7.vm.box = "clouddood/RH7.5_baserepo"
-#    jupyterRH7.vm.hostname = "jupyterRH7"
-#    jupyterRH7.vm.network "private_network", ip: "192.168.60.141"
-#    jupyterRH7.vm.provision "shell", :inline => "sudo echo '192.168.60.141 jupyterRH7.local jupyterRH7' >> /etc/hosts"
-#    jupyterRH7.vm.provision "ansible" do |ansible|
-#      ansible.playbook = "deploy_jupyterRH7_DEV.local.yml"
-##     ansible.playbook = "deploy_jupyterRH7.yml"
-#      ansible.inventory_path = "vagrant_hosts"
-#      #ansible.tags = ansible_tags
-#      #ansible.verbose = ansible_verbosity
-#      #ansible.extra_vars = ansible_extra_vars
-#      #ansible.limit = ansible_limit
-#    end
-#  end
-## config.trigger.before :destroy do |trigger|
-##   run "rm -Rf /tmp/abc/*"
-#    # subscription-manager remove --all
-#    # subscription-manager unregister
-#    # subscription-manager clean
-##   trigger.name = "Destroy Trigger ..."
-##   trigger.info = "Destroy Trigger Execution ..."
-##   trigger.run = { path: "subscription-manager remove --all"}
-##   trigger.run = { path: "subscription-manager unregister"}
-##   trigger.run = { path: "subscription-manager clean"}
-## end
-#end
