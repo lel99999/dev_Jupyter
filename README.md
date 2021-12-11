@@ -66,3 +66,8 @@ $jupyter notebook --no-browser
 ```
 
 #### Explore Dynamic Kernels for Jupyter
+- Multiple Kernels in One Jupyter Notebook
+  - [https://vatlab.github.io/sos-docs/doc/user_guide/multi_kernel_notebook.html](https://vatlab.github.io/sos-docs/doc/user_guide/multi_kernel_notebook.html) <br/>
+
+#### BUild Dockerfile 
+`$docker build - < <Dockerfile.XXX>` <br/>
