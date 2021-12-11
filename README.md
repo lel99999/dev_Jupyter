@@ -64,6 +64,8 @@ To recreate the same environment and install same packages:<br/>
 ```
 $jupyter notebook --no-browser
 ```
+#### Making Kernels for Jupyter
+- [https://jupyter-client.readthedocs.io/en/stable/kernels.html](https://jupyter-client.readthedocs.io/en/stable/kernels.html) <br/>
 
 #### Explore Dynamic Kernels for Jupyter
 - Multiple Kernels in One Jupyter Notebook
