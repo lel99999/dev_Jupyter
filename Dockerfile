@@ -75,3 +75,7 @@ CMD ["/usr/sbin/init"]
 RUN yum -y install bzip2 epel-release
 RUN yum -y groupinstall "Development Tools"
 RUN yum -y install python3 python3-devel python3-pip python3-virtualenv
+
+RUN python3 -m venv jupyter-virtualenv
+RUN source  jupyter-virtualenv/bin/activate
+RUN pip3 install jupyter
