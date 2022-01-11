@@ -36,6 +36,7 @@ or<br/>
 ```
 $jupyter --version
 ```
+![https://github.com/lel99999/dev_JupyterRH7/blob/master/jupyter_version-01.png](https://github.com/lel99999/dev_JupyterRH7/blob/master/jupyter_version-01.png) <br/>
 
 #### Save or Freeze the requirements
 `$pip list`  Will list all packages <br/>
