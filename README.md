@@ -23,14 +23,19 @@ or<br/>
 `(project) $pip3 install jupyterlab`<br/>
 
 #### Install Jupyter Notebook
-`(project) $pip3 install notebook`<br/>
+`(project) $pip3 install jupyter`<br/>
 
-`(project) $python3 -m pip install notebook`<br/>
+`(project) $python3 -m pip install jupyter`<br/>
 
 #### Test Jupyter Installation
 `(project) $which python3`<br/>
 `(project) $which ipython3`<br/>
 `(project) $which jupyter-notebook`<br/>
+
+#### Find jupter version
+```
+$jupyter --version
+```
 
 #### Save or Freeze the requirements
 `$pip list`  Will list all packages <br/>
